@@ -15,7 +15,7 @@ const app = express();
 
 
 // Connect to mongoose
-mongoose.connect('mongodb://localhost/ntumaps');
+mongoose.connect(MONGODB_URI);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
