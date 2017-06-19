@@ -51,6 +51,8 @@ function initMap() {
   // Create a renderer for directions and bind it to the map.
   var directionsDisplay = new google.maps.DirectionsRenderer({map: map});
 
+  directionsDisplay.setPanel(document.getElementById('directionsPanel'))
+
   // Instantiate an info window to hold step text.
   var stepDisplay = new google.maps.InfoWindow;
 
