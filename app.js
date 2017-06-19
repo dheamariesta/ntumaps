@@ -13,6 +13,7 @@ import index from './routes/index';
 const app = express();
 // const debug = Debug('ntumaps:app');
 
+
 // Connect to mongoose
 mongoose.connect('mongodb://localhost/ntumaps');
 
@@ -51,6 +52,7 @@ app.use((err, req, res, next) => {
   res.status(err.status || 500);
   res.render('error');
 });
+
 
 // Handle uncaughtException
 process.on('uncaughtException', (err) => {

@@ -10,5 +10,12 @@ block content
       a(href='/signup') Sign Up
   hr
   .container.inner
-    .col-md-9#maps
-    .col-md-3
+    .row
+      .col-md-9#map
+      .col-md-3
+        .row
+          input#from.form-control(type='text', placeholder='From', value='lee wee nam')
+          input#to.form-control(type='text', placeholder='To', value='hall 1')
+          button.btn.btn-default(type='submit') Get directions
+        .row#directionsPanel
+          
