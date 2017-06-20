@@ -13,7 +13,7 @@ let pathController = {
       route: []
     });
     for (var i in route) {
-          path.route.push(route[i])
+      path.route.push(route[i])
     }
 
     path.save ((err, path) => {
