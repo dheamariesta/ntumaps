@@ -1,14 +1,15 @@
 // This is a router file
 // Router -> controller -> schema
 import express from 'express';
-import User from '../models/user';
-import Admin from '../models/admin';
+import pathController from '../controllers/pathController';
 import userController from '../controllers/userController';
 import adminController from '../controllers/adminController';
 
 const router = express.Router();
 
 /* GET index page. */
+
+router.post('/adminmap', pathController.save);
 router.get('/', userController.home);
 
 router.get('/login', userController.showLogin);

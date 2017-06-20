@@ -14,11 +14,11 @@ block content
       .col-md-9#map
       .col-md-3
         .row
-          input#from.form-control(type='text', placeholder='From', value='lee wee nam')
-          input#to.form-control(type='text', placeholder='To', value='hall 1')
-          button.btn.btn-default(type='submit') Get directions
+            input#start.form-control(type='text', placeholder='From', value='lee wee nam')
+            input#end.form-control(type='text', placeholder='To', value='hall 1')
+            button.btn.btn-default(type='submit', id='submit-button') Save
         .row#directionsPanel
-  script(src='./javascripts/main.js')        
+  script(src='./javascripts/admin-main.js')        
   script(async='', defer='', src='https://maps.googleapis.com/maps/api/js?key=AIzaSyBXF2iN40EkjVkCotcVJnP7mMQxTzZgAvI&callback=initialize')
 
           
