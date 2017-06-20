@@ -3,6 +3,9 @@ import cookieParser from 'cookie-parser';
 import Debug from 'debug';
 import express from 'express';
 import logger from 'morgan';
+import dotenv from 'dotenv';
+dotenv.load( {path: '.env'} )
+
 // import favicon from 'serve-favicon';
 import path from 'path';
 import lessMiddleware from 'less-middleware';

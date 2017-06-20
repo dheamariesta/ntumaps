@@ -1,41 +1,3 @@
-/*function initMap() {
-  var current = {lat: 1.3483, lng: 103.6831};
-  var directionsService = new google.maps.DirectionsService;
-  var directionsDisplay = new google.maps.DirectionsRenderer;
-  var map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 16,
-    center: {lat: 1.3483, lng: 103.6831}
-  });
-
-  var marker = new google.maps.Marker({
-    position: current,
-    map: map
-  });
-
-  directionsDisplay.setMap(map);
-  directionsDisplay.setPanel(document.getElementById('directionsPanel'))
-
-  var onChangeHandler = function() {
-    calculateAndDisplayRoute(directionsService, directionsDisplay);
-  };
-  document.getElementById('from').addEventListener('change', onChangeHandler);
-  document.getElementById('to').addEventListener('change', onChangeHandler);
-}
-
-function calculateAndDisplayRoute(directionsService, directionsDisplay) {
-  directionsService.route({
-    origin: document.getElementById('from').value,
-    destination: document.getElementById('to').value,
-    travelMode: 'WALKING'
-  }, function(response, status) {
-    if (status === 'OK') {
-      directionsDisplay.setDirections(response);
-    } else {
-      window.alert('Directions request failed due to ' + status);
-    }
-  });
-}
-*/
 function initMap() {
   var markerArray = [];
 
@@ -120,3 +82,40 @@ function attachInstructionText(stepDisplay, marker, text, map) {
     stepDisplay.open(map, marker);
   });
 }
+
+var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+var labelIndex = 0;
+
+var array =[];
+
+function initialize() {
+  var leeweenam = { lat: 1.3475, lng: 103.6809};
+  var map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 20,
+    center: leeweenam
+  });
+
+  // This event listener calls addMarker() when the map is clicked.
+  google.maps.event.addListener(map, 'click', function(event) {
+    addMarker(event.latLng, map);
+    console.log(JSON.stringify(event.latLng));
+    array.push(JSON.stringify(event.latLng));
+    console.log(array);
+  });
+
+  // Add a marker at the center of the map.
+  addMarker(leeweenam, map);
+}
+
+// Adds a marker to the map.
+function addMarker(location, map) {
+  // Add the marker at the clicked location, and add the next-available label
+  // from the array of alphabetical characters.
+  var marker = new google.maps.Marker({
+    position: location,
+    label: labels[labelIndex++ % labels.length],
+    map: map
+  });
+}
+
+// google.maps.event.addDomListener(window, 'load', initialize);

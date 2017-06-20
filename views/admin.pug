@@ -1,0 +1,21 @@
+extends layout
+
+block content
+  // Pulling Awesome Font
+  link(href='//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css', rel='stylesheet')
+  .container
+    .row
+      .col-md-offset-5.col-md-3
+        form(action='/login', autocomplete='off', method='POST')
+          .form-login
+            h4 Welcome back.
+            input#userName.form-control.input-sm.chat-input(type='text', placeholder='username', name = 'username')
+            br
+            input#userPassword.form-control.input-sm.chat-input(type='password', placeholder='password', password = 'password', name='password')
+            br
+            .wrapper
+              span.group-btn
+          button.btn.btn-primary.btn-md(type='submit')
+            | login 
+            i.fa.fa-sign-in
+        a(href='/admin/signup') Signup

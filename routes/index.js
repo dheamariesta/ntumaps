@@ -2,76 +2,31 @@
 // Router -> controller -> schema
 import express from 'express';
 import User from '../models/user';
+import Admin from '../models/admin';
+import userController from '../controllers/userController';
+import adminController from '../controllers/adminController';
 
 const router = express.Router();
 
 /* GET index page. */
-router.get('/login', (req, res, next) => {
-  res.render('login', {
-    title: 'Login'
-  });
-});
+router.get('/', userController.home);
 
-router.get('/', (req, res, next) => {
-  res.render('index', {
-    title: 'NTU Maps'
-  });
-});
+router.get('/login', userController.showLogin);
 
-router.post('/login', (req, res, next) => {
-  const username = req.body.username;
-  console.log(username);
-  const password = req.body.password;
-  console.log(password);
+router.post('/login', userController.login);
 
-  User.find({ username : username }, (err, users) => {
-    if (err) {
-      console.log(err);
-      res.render('login', {
-        title: 'Login'
-      });
-    } else {
-      users[0].comparePassword(password, (err, isMatch) => {
-        if (isMatch) {
-          res.redirect('/secret');
-        } else {
-          res.render('login', {
-            title: 'Login'
-          });
-        }
-      });
-    }
-  });
-});
+router.get('/admin', adminController.showLogin);
 
-router.get('/signup', (req, res, next) => {
-  res.render('signup', {
-    title: 'Signup'
-  });
-});
+router.post('/admin', adminController.login);
 
-router.post('/signup', (req, res, next) => {
-  const username = req.body.username;
-  const password = req.body.password;
+router.get('/admin/signup', adminController.showSignUp);
 
-  const user = new User({
-    username : username,
-    password : password
-  });
-  console.log(user);
-  user.save ((err, user) => {
-    console.log('User is saved');
+router.post('/admin/signup', adminController.signup);
+router.get('/adminmap', adminController.home);
 
-    if (err) {
-      console.log(err);
-      res.render('signup', {
-        title: 'Signup'
-      });
-    }
+router.get('/signup', userController.showSignUp);
 
-    res.redirect('/');
-  });
-});
+router.post('/signup', userController.signup);
 
 router.get('/secret', (req, res, next) => {
   res.render('secret', {
