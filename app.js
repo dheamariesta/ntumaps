@@ -5,7 +5,7 @@ import express from 'express';
 import logger from 'morgan';
 import dotenv from 'dotenv';
 dotenv.load( {path: '.env'} )
-
+import passport from 'passport';
 // import favicon from 'serve-favicon';
 import path from 'path';
 import lessMiddleware from 'less-middleware';
@@ -18,7 +18,8 @@ const app = express();
 
 
 // Connect to mongoose
-mongoose.connect(process.env.MONGODB_URI);
+mongoose.connect(process.env.MONGODB_URI || process.env.MONGOLAB_URI);
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -35,7 +36,8 @@ app.use(bodyParser.urlencoded({
 app.use(cookieParser());
 app.use(lessMiddleware(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public')));
-
+app.use(passport.initialize())
+app.use(passport.session())
 app.use('/', index);
 
 // catch 404 and forward to error handler

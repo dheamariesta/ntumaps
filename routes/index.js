@@ -4,6 +4,7 @@ import express from 'express';
 import pathController from '../controllers/pathController';
 import userController from '../controllers/userController';
 import adminController from '../controllers/adminController';
+import passportConfig from '../config/passport';
 
 const router = express.Router();
 
@@ -11,7 +12,22 @@ const router = express.Router();
 
 router.post('/adminmap', pathController.save);
 router.get('/', userController.home);
+router.post('/', pathController.getRoute);
 
+
+
+router.get('/dashboard', (req, res, next) => {
+  if(!req.user){
+    res.redirect('/login');
+  }
+  res.render('dashboard', {
+    title: 'Dashboard'
+  })
+})
+
+
+
+router.post('/dashboard', pathController.getSavedRoute);
 router.get('/login', userController.showLogin);
 
 router.post('/login', userController.login);
