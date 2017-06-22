@@ -3,18 +3,18 @@ extends layout
 block content
   .container
   .row#query-row
-    form#path-query(action='/dashboard', autocomplete='off', method='POST')
-      h1 Select saved path
-      |         From:
-      select(name='start')
-        option(value='lee wee nam') Lee Wee Nam
-        option(value='Canteen 2') Can 2
-      |         To:
-      select(name='end')
-        option(value='hive') Hive
-        option(value='Canteen 2') Can 2
-      input#get-saved-path.btn.btn-default(type='submit', value='Submit')
+    a(href='/') Back to Home
+    h1 Select saved path
+    |         From:
+    select(name='start')
+      option(value='lee wee nam') Lee Wee Nam
+      option(value='Canteen 2') Can 2
+    |         To:
+    select(name='end')
+      option(value='hive') Hive
+      option(value='Canteen 2') Can 2
+    input#get-saved-path.btn.btn-default(type='submit', value='Submit')
   #map.row
     
-  script(src='/javascripts/dashboard-main.js')        
+  script(src='/javascripts/main.js')        
   script(async='', defer='', src='https://maps.googleapis.com/maps/api/js?key=AIzaSyBXF2iN40EkjVkCotcVJnP7mMQxTzZgAvI&callback=initMap')

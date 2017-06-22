@@ -5,13 +5,19 @@ import express from 'express';
 import logger from 'morgan';
 import dotenv from 'dotenv';
 dotenv.load( {path: '.env'} )
-import passport from 'passport';
+
 // import favicon from 'serve-favicon';
 import path from 'path';
 import lessMiddleware from 'less-middleware';
 import mongoose from 'mongoose';
-import index from './routes/index';
+import pathController from './controllers/pathController';
 
+
+const errorHandler = require('errorhandler');
+const flash = require('express-flash');
+// import index from './routes/index';
+var session = require('express-session');
+var passport = require('passport');
 
 const app = express();
 // const debug = Debug('ntumaps:app');
@@ -19,6 +25,11 @@ const app = express();
 
 // Connect to mongoose
 mongoose.connect(process.env.MONGODB_URI || process.env.MONGOLAB_URI);
+app.use(session( {secret : 'secret-name'}));
+app.use(passport.initialize())
+app.use(passport.session())
+require('./config/passportConfig')(passport);
+app.use(flash());
 
 
 // view engine setup
@@ -30,15 +41,29 @@ app.set('view engine', 'pug');
 // app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
-  extended: false
+  extended: true
 }));
 
 app.use(cookieParser());
 app.use(lessMiddleware(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(passport.initialize())
-app.use(passport.session())
-app.use('/', index);
+
+// app.use('/', index);
+app.get('/', (req, res, next) => {
+  res.render('index', {
+    title: 'NTU Maps'
+  })
+});
+
+app.post('/', pathController.getRoute);
+
+
+//app.use('/', require('./routes/index'));
+app.use('/', require('./routes/login'))
+app.use('/', require('./routes/signup'))
+app.use('/', require('./routes/dashboard'))
+// app.use('/login', require('./routes/login'))
+
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

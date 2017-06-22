@@ -2,19 +2,20 @@ extends layout
 
 block content
   header
-  h3 NTU Maps
-  ul
-    li
-      a(href='/login') Login
-    li
-      a(href='/signup') Sign Up
-  hr
+    h3 NTU Maps
+    ul
+      li
+        a(href='/login') Login
+      li
+        a(href='/signup') Sign Up
+    hr
+    
   .container.inner
     .row
       .col-md-9#map
       .col-md-3
         .row
-          h1 Select saved path
+          h1 Select path
           |         From:
           select(name='start')
             option(value='lee wee nam') Lee Wee Nam
