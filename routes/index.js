@@ -26,14 +26,14 @@ router.post('/', pathController.getRoute)
 // })
 // router.post('/dashboard', pathController.getSavedRoute);
 //
-// router.get('/admin', adminController.showLogin);
-// router.post('/admin', adminController.login);
+router.get('/admin', adminController.showLogin);
+router.post('/admin', adminController.login);
+
+router.get('/admin/signup', adminController.showSignUp);
+router.post('/admin/signup', adminController.signup);
 //
-// router.get('/admin/signup', adminController.showSignUp);
-// router.post('/admin/signup', adminController.signup);
-//
-// router.get('/adminmap', adminController.home);
-// router.post('/adminmap', pathController.save);
+router.get('/adminmap', adminController.home);
+router.post('/adminmap', pathController.save);
 //
 // router.get('/secret', (req, res, next) => {
 //   res.render('secret', {

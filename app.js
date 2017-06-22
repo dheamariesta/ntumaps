@@ -11,6 +11,7 @@ import path from 'path';
 import lessMiddleware from 'less-middleware';
 import mongoose from 'mongoose';
 import pathController from './controllers/pathController';
+import adminController from './controllers/adminController';
 
 
 const errorHandler = require('errorhandler');
@@ -63,6 +64,14 @@ app.post('/', pathController.getRoute);
 app.use('/', require('./routes/login'))
 app.use('/', require('./routes/signup'))
 app.use('/', require('./routes/dashboard'))
+app.get('/admin', adminController.showLogin);
+app.post('/admin', adminController.login);
+
+app.get('/admin/signup', adminController.showSignUp);
+app.post('/admin/signup', adminController.signup);
+//
+app.get('/adminmap', adminController.home);
+app.post('/adminmap', pathController.save);
 // app.use('/login', require('./routes/login'))
 
 
