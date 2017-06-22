@@ -5,6 +5,7 @@ var end;
 var array =[];
 
 
+
 var startListener = document.getElementsByTagName('select')[0];
 start = startListener.value;
 startListener.addEventListener('click', function(){
@@ -69,6 +70,59 @@ function initMap() {
     flightPath.setMap(map);
   }
 }
+
+// function getCurrentUserId() {
+//   $.ajax({
+//     method: 'GET',
+//     url: '/dashboard/' + userid
+//   }).done(function(data){
+//     return data;
+//   });
+// }
+var updateProfile = document.getElementById('update');
+updateProfile.addEventListener('click', function() {
+
+  var email = document.getElementById('inputEmail');
+  console.log(email.value);
+
+  // var userUsername = user.username;
+  // console.log(userUsername);
+  $.ajax({
+    method: 'GET',
+    url: '/user',
+  }).done(function(data){
+    console.log(data._id)
+    handleUserId(data._id)
+    return data;
+  });
+
+  function handleUserId(id){
+    $.ajax({
+      method: 'PUT',
+      url: '/dashboard/' +id,
+      data: {email:email.value}
+    }).done(function(data){
+      console.log(data)
+      return data;
+    });
+  }
+
+
+})
+
+var logout = document.getElementById('logout');
+logout.addEventListener('click', function(){
+  $.ajax({
+      method: 'GET',
+      url: '/logout'
+    }).done(function(data){
+      alert(data)
+      return data;
+    });
+
+})
+
+
 
 
 

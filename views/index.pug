@@ -8,8 +8,19 @@ block content
         a(href='/login') Login
       li
         a(href='/signup') Sign Up
+
+    ul.nav.navbar-nav.navbar-right
+      if user
+        a.dropdown-toggle(href='#', data-toggle='dropdown')
+          span= user.username
+          i.caret
+        ul.dropdown-menu
+          li
+            a(href='/dashboard') Dashboard
+          li.divider
+          li
+            a(href='/logout') Logout
     hr
-    
   .container.inner
     .row
       .col-md-9#map

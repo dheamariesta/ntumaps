@@ -32,7 +32,30 @@ let userController = {
       failureFlash: false
     })
     return userSignupStrategy(req, res, next)
+  },
+
+  updateEmail: (req, res, next) => {
+
+    let id = req.params.id;
+    let email = req.body.email;
+
+    User.findOneAndUpdate({'_id': id}, {
+      $set:{email:email}
+    }, function(err, doc){
+          if(err){
+              console.log("Something wrong when updating data!");
+          }
+
+          res.json('update successful');
+    })
+  },
+
+  logout: (req, res, next) => {
+    req.logout();
+    res.json('logout')
+    res.redirect('/');
   }
+
 
 
 

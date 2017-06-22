@@ -24,7 +24,7 @@ const app = express();
 
 
 // Connect to mongoose
-mongoose.connect(process.env.MONGODB_URI || process.env.MONGOLAB_URI);
+mongoose.connect(process.env.MONGODB_URI);
 app.use(session( {secret : 'secret-name'}));
 app.use(passport.initialize())
 app.use(passport.session())
@@ -51,7 +51,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 // app.use('/', index);
 app.get('/', (req, res, next) => {
   res.render('index', {
-    title: 'NTU Maps'
+    title: 'NTU Maps',
+    user: req.user
   })
 });
 

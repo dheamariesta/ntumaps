@@ -71,21 +71,21 @@ function initMap() {
 }
 
 
-var saveButton = document.getElementById('save');
-saveButton.addEventListener('click', function(){
-  var pathData = {
-    start: start,
-    end: end
-  }
-
-  $.ajax({
-    method: 'POST',
-    url: '/:save',
-    data: pathData
-  }).done(function(data){
-
-  });
-})
+// var saveButton = document.getElementById('save');
+// saveButton.addEventListener('click', function(){
+//   var pathData = {
+//     start: start,
+//     end: end
+//   }
+//
+//   $.ajax({
+//     method: 'POST',
+//     url: '/:save',
+//     data: pathData
+//   }).done(function(data){
+//
+//   });
+// })
 
 
 // google.maps.event.addDomListener(window, 'load', initialize);

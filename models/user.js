@@ -3,7 +3,8 @@ import bcrypt from 'bcrypt';
 
 const userSchema = new mongoose.Schema({
   username: { type: String, unique: true },
-  password: String
+  password: String,
+  email: String
 }, { timestamps: true });
 
 

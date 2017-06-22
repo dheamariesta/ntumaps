@@ -14,7 +14,22 @@ block content
       option(value='hive') Hive
       option(value='Canteen 2') Can 2
     input#get-saved-path.btn.btn-default(type='submit', value='Submit')
+    input#logout.btn.btn-default(value='Logout')
   #map.row
     
-  script(src='/javascripts/main.js')        
+  #profile.row
+    fieldset(disabled='')
+      .form-group
+        label(for='disabledTextInput') Username
+        input#disabledTextInput.form-control(type='text', value='dhea')
+      .form-group
+        label(for='disabledTextInput') Password
+        input#disabledTextInput.form-control(type='password', value='password')
+    .form-group
+      label.col-sm-2.control-label(for='inputPassword') Email
+      input#inputEmail.form-control(type='text', placeholder='Email', name='email')
+    input#update.btn.btn-default(type='submit', value='Update profile')
+
+    
+  script(src='/javascripts/dashboard-main.js')        
   script(async='', defer='', src='https://maps.googleapis.com/maps/api/js?key=AIzaSyBXF2iN40EkjVkCotcVJnP7mMQxTzZgAvI&callback=initMap')
