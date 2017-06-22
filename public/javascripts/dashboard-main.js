@@ -112,17 +112,38 @@ updateProfile.addEventListener('click', function() {
 
 var logout = document.getElementById('logout');
 logout.addEventListener('click', function(){
-  $.ajax({
-      method: 'GET',
-      url: '/logout'
-    }).done(function(data){
-      alert(data)
-      return data;
-    });
+  alert('logout Successful')
 
 })
 
+var deleteAccount = document.getElementById('delete');
+deleteAccount.addEventListener('click', function() {
 
+
+  // var userUsername = user.username;
+  // console.log(userUsername);
+  $.ajax({
+    method: 'GET',
+    url: '/user',
+  }).done(function(data){
+    console.log(data._id)
+    handleUserId(data._id)
+    return data;
+  });
+
+  function handleUserId(id){
+    $.ajax({
+      method: 'DELETE',
+      url: '/dashboard/' +id
+    }).done(function(data){
+      console.log(data)
+      window.location.href = '/'
+      //return data;
+    });
+  }
+
+
+})
 
 
 

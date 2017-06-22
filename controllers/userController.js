@@ -52,8 +52,20 @@ let userController = {
 
   logout: (req, res, next) => {
     req.logout();
-    res.json('logout')
     res.redirect('/');
+    //res.json('logout')
+  },
+
+  deleteUser: (req, res, next) => {
+    User.remove({_id: req.params.id}, (err) => {
+      if (err) return res.json({message: 'could not delete user because: ' + err})
+      req.logout()
+      res.send('deleted');
+    });
+  },
+
+  getUserDetails: (req, res) => {
+    console.log(req.user);
   }
 
 

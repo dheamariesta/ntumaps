@@ -11,15 +11,9 @@ block content
 
     ul.nav.navbar-nav.navbar-right
       if user
-        a.dropdown-toggle(href='#', data-toggle='dropdown')
+        a(href='/dashboard')
           span= user.username
           i.caret
-        ul.dropdown-menu
-          li
-            a(href='/dashboard') Dashboard
-          li.divider
-          li
-            a(href='/logout') Logout
     hr
   .container.inner
     .row

@@ -14,7 +14,9 @@ block content
       option(value='hive') Hive
       option(value='Canteen 2') Can 2
     input#get-saved-path.btn.btn-default(type='submit', value='Submit')
-    input#logout.btn.btn-default(value='Logout')
+    form(action='/logout', autocomplete='off', method='GET')
+      input#logout.btn.btn-default(value='Logout', type='submit')
+    input#delete.btn.btn-default(value='Delete Account')
   #map.row
     
   #profile.row
