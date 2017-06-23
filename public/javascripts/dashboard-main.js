@@ -137,6 +137,7 @@ deleteAccount.addEventListener('click', function() {
       url: '/dashboard/' +id
     }).done(function(data){
       console.log(data)
+      alert(data)
       window.location.href = '/'
       //return data;
     });
