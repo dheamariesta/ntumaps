@@ -103,6 +103,7 @@ updateProfile.addEventListener('click', function() {
       data: {email:email.value}
     }).done(function(data){
       console.log(data)
+      alert(data)
       return data;
     });
   }
